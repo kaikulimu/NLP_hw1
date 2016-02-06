@@ -1,0 +1,122 @@
+README for Homework 1
+
+Part 1 - 10 sample sentences:
+
+is it true that a chief of staff with a sandwich with every chief of staff in a floor in every pickle with
+a floor in every perplexed floor in the floor in the floor in a president with every floor on a pickle under
+every pickle with every chief of staff in a pickle in a sandwich in the floor under every floor ate a pickled
+chief of staff ?
+a pickle ate every president on every perplexed sandwich on every perplexed chief of staff with the preside
+nt in every floor in every pickle on the president in a pickle in a president !
+is it true that every floor under every floor under the sandwich under the floor with the perplexed chief o
+f staff on the fine fine pickle in every pickle under the chief of staff on a sandwich in the chief of staf
+f under every president on a pickle with every president in the pickled chief of staff understood every flo
+or in every sandwich on the chief of staff in every pickled pickle ?
+every delicious pickle kissed the sandwich in the pickle on every pickled chief of staff under a floor under
+a fine sandwich with every perplexed chief of staff .
+is it true that a chief of staff wanted the pickled fine president ?
+is it true that a perplexed chief of staff pickled a pickle ?
+every president ate the sandwich in the sandwich with every floor with the pickled sandwich with the floor
+with a floor !
+is it true that a sandwich understood a president on every chief of staff ?
+is it true that a pickle under every president pickled every sandwich ?
+the president pickled a delicious pickled perplexed pickled pickled chief of staff !
+
+
+2. (a) The sentences tend to be long because of the rule NP --> NP PP because it
+       it loops back and forth between adding nouns and then adding prepositional
+       phrases that always add another noun phrase and every time you have a noun
+       phrase you have a 50% probability of adding another noun phrase so the
+       sentences just go on and on.
+   (b) The probability of choosing the Noun --> Adj Noun rule is only 1/6.
+   (c) -- code adjusted in RandSent.java to accommodate probabilities --
+   (d) To fix (a) you must make the NP --> Det Noun have a larger probability than
+       NP --> NP PP. To fix (b) you must increase the probability of Noun --> Adj Noun
+       so that terminals drastically more likely anymore.
+   (e) -- see grammar2.txt --
+
+3. -- generate and display 10 sentences using grammar3.txt --
+that a perplexed sandwich wanted and understood a chief of staff perplexed Sally !
+is it true that it perplexed every very perplexed floor that it perplexed every chief of staff that Sally pickled Sally ?
+that a sandwich understood and wanted every president perplexed Sally on Sally and every pickled president and Sally and Sally with Sally .
+is it true that that it perplexed Sally that Sally worked on a proposal and Sally with Sally in a chief of staff on every floor and Sally and Sally and Sally and a very pickled pickle and the president with Sally and a proposal perplexed Sally and Sally ?
+the very delicious chief of staff pickled Sally and every proposal and the chief of staff !
+Sally worked with Sally on the president and a delicious proposal !
+a pickle pickled Sally !
+every president and the perplexed chief of staff worked with a perplexed sandwich .
+it perplexed a president that that it perplexed a very very pickled proposal and a desk that that every floor thought that Sally sighed perplexed Sally perplexed the proposal and the desk with Sally on Sally !
+is it true that Sally worked on Sally ?
+
+4. -- see adjustments in RandSent.java --
+
+5. (a) The alternative derivation is as follows:
+	   
+	   (ROOT (S (NP (NP (Det every)
+	   				    (Noun sandwich))
+	                (PP (Prep with)
+					    (NP (NP (Det a)
+							    (Noun pickle))
+						    (PP (Prep on)
+							    (NP (Det the)
+								    (Noun floor))))))
+	            (VP (V wanted)
+				    (NP (Det a)
+					    (Noun president))))
+			  .)
+
+   (b) Each derivation has a different meaning. The first derivation 
+       suggests that it's the sandwiches with pickles that are both on
+	   the ground and wanting a president. The second derivation says 
+	   that sandwiches want a president when their pickles are on the 
+	   floor. The main difference is in which noun phrase 'on' is modifying.
+
+6. (a) Sometimes it will find an alternative. This is because some sentences
+	   are ambiguous, meaning that they can be derived using more than one
+	   set of steps. It will likely "misunderstand" by choosing the most
+	   likely sentence parsing even if you intended the sentence to have
+	   a parsing that is more rare.
+
+   (b) There are 5 ways to analyze the noun phrase. You can verify this by
+       breaking the noun phrase up into its 4 sub-noun phrases with 
+	   3 prepositions that have to compose with a neighboring noun phrase
+	   of some sort. So if you number the sub-noun phrases 1 (every sandwich),
+	   2 (a pickle), 3 (the floor), and 4 (the chief of staff) then you can
+	   count all the ways to connect them in a binary tree where they must
+	   read in order from left to right. Every intermediate node is an NP
+	   resulting from joining to sub-NPs by a preposition. So to count the 
+	   number of ways you can interpret the sentence, you start by composing 1
+	   and 2 first to yield NP1. Then you can either choose to compose NP1 with
+	   3 before composing with 4 which is our first full NP interpretation, or 
+	   you can compose 3 and 4 first to yield NP2 and then compse NP1 and NP2.
+	   The third interpretation is the mirror of the first, so you would 
+	   compose 3 and 4 first to yield NP3 and then compose NP3 with 2 before
+	   composing with 1. The fourth interpretation requries starting by
+	   composing 2 and 3 first to yield NP4 then composing NP4 with 1 before 
+	   composing with 4. The fifth and final interpretation is just the mirror
+	   of the fourth, in that you still compose 2 and 3 first, but this time 
+	   you compose the NP4 they yield with 4 before composing with 1.
+
+   (c)
+
+   (d) i. - p(best parse) is really small because the probability was determined
+            multiplying probabilities of each step used to derive the sentence
+			divided by the total number of possible sentences, which is
+		  - There is only one possible way to derive this sentence using our
+		    grammar so the best parse is really the only parse, so they are
+			equally likely.
+		  - It's because p(best_parse | sentence) 
+		  					   p(best_parse)      5.144032922e-05
+							= --------------- =  ----------------- = 1
+						        p(sentence)       5.144032922e-05
+			since p(best_parse) already takes into account the number of 
+			possible sentences, so it's essentially p(best_parse, sentence).
+
+	  ii. This means that there are multiple possible parses and the best parse
+	      occurs for exactly half of the instances where this sentence appears
+		  in the list of sentences generated by the grammar.
+	 iii. 
+	  iv.
+	   v.
+
+7. (b) Yes-no questions
+   (c) Relative clauses

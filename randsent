@@ -1,0 +1,2 @@
+javac RandSent.java
+java RandSent $*
