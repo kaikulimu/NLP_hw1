@@ -19,35 +19,34 @@
 1	S 	that S Past NP
 
 3	VP	Verb NP
-1	VP	Verb Conj VP
+1	VP	VP Conj VP
 1   VP  IVerb
 1	VP	MVerb that S
 1	VP	PVerb Prep NP
 
-4	NP	Det Noun
-3   NP  PNoun
-2	NP	NP PP
+1   Verb    Verb Conj Verb
+
+6	NP	Det Noun
+2   NP  PNoun
+1	NP	NP PP
 1	NP	NP Conj NP
-1   NP  NP and NP
 
 1	PP	Prep NP
 
 3	Noun	Adj Noun
-3	Adj		Adv Adj
-1	Adv		Adv
-
+1	Adj		Adv Adj
 
 # Vocabulary.
 
 1	Conj	and
 
-1	Verb	ate
+1	Verb	ate         # transitive verb
 1	Verb	wanted
 1	Verb	kissed
 1	Verb	understood
 1	Verb	pickled
 
-1   MVerb    thought	# mental verb
+1   MVerb    thought	# mental verb (verbs usually followed by "that")
 
 1   IVerb    sighed  	# intransitive verb
 
@@ -74,7 +73,7 @@
 
 1	Adv very			# adverb
 
-1	Past perplexed		# past tense mental verbs
+1	Past perplexed		# past tense verbs
 
 1	Prep	with
 1	Prep	on

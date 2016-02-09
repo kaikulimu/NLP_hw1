@@ -23,29 +23,53 @@ is it true that a pickle under every president pickled every sandwich ?
 the president pickled a delicious pickled perplexed pickled pickled chief of staff !
 
 
-2. (a) The sentences tend to be long because of the rule NP --> NP PP because it
-       it loops back and forth between adding nouns and then adding prepositional
-       phrases that always add another noun phrase and every time you have a noun
-       phrase you have a 50% probability of adding another noun phrase so the
-       sentences just go on and on.
-   (b) The probability of choosing the Noun --> Adj Noun rule is only 1/6.
+2. (a) The sentences tend to be long because of the rule NP --> NP PP because it goes into
+       loops of adding a noun phrase with an extra prepositional
+       phrase that always adds another noun phrase. Every time you have a noun
+       phrase you have a 50% probability of effectively adding another noun phrase since the only
+       other noun phrase rule is NP --> Det Noun, which is equally likely.
+   (b) The probability of choosing the Noun --> Adj Noun rule is only 1/6, and this is the only way
+       to generate adjectives.
    (c) -- code adjusted in RandSent.java to accommodate probabilities --
    (d) To fix (a) you must make the NP --> Det Noun have a larger probability than
        NP --> NP PP. To fix (b) you must increase the probability of Noun --> Adj Noun
        so that terminals drastically more likely anymore.
-   (e) -- see grammar2.txt --
+   (e) I adjust the frequencies of various terminals like nouns such that it was more indicative
+       of our personal experience with real life English sentences.
+
+is it true that the perplexed floor kissed the perplexed chief of staff ?
+every president wanted the delicious president .
+the floor wanted the chief of staff .
+a fine fine pickle with a chief of staff on a chief of staff pickled the fine floor .
+the chief of staff understood the chief of staff !
+is it true that the president kissed every chief of staff in the fine fine fine chief of staff ?
+is it true that the chief of staff understood every perplexed president on every president ?
+the chief of staff ate a pickle .
+is it true that the floor in the fine sandwich pickled the fine chief of staff ?
+is it true that every chief of staff understood a fine pickled president in every fine floor ?
+
 
 3. -- generate and display 10 sentences using grammar3.txt --
-that a perplexed sandwich wanted and understood a chief of staff perplexed Sally !
-is it true that it perplexed every very perplexed floor that it perplexed every chief of staff that Sally pickled Sally ?
-that a sandwich understood and wanted every president perplexed Sally on Sally and every pickled president and Sally and Sally with Sally .
-is it true that that it perplexed Sally that Sally worked on a proposal and Sally with Sally in a chief of staff on every floor and Sally and Sally and Sally and a very pickled pickle and the president with Sally and a proposal perplexed Sally and Sally ?
-the very delicious chief of staff pickled Sally and every proposal and the chief of staff !
-Sally worked with Sally on the president and a delicious proposal !
-a pickle pickled Sally !
-every president and the perplexed chief of staff worked with a perplexed sandwich .
-it perplexed a president that that it perplexed a very very pickled proposal and a desk that that every floor thought that Sally sighed perplexed Sally perplexed the proposal and the desk with Sally on Sally !
-is it true that Sally worked on Sally ?
+   (a) I added a proper noun nonterminal that only had the terminal 'Sally': NP --> PNoun, PNoun --> Sally
+   (b) I added a conjunction nonterminal to verb phrases and noun phrases and added the terminal 'and':
+       VP --> Verb Conj VP, VP --> VP Conj VP, NP --> NP Conj NP, Conj --> and
+   (c) I created an intransitive verb nonterminal called
+   (d)
+   (e)
+   (f)
+   (g)
+   (h)
+
+is it true that every floor and Sally wanted every pickle and sighed ?
+every perplexed chief of staff understood Sally .
+is it true that it perplexed the perplexed fine floor that every floor pickled a pickle and ate Sally ?
+a desk ate Sally and Sally and every pickle and pickled the floor .
+that it perplexed Sally that the very pickled fine pickle in the fine president understood Sally in a desk perplexed Sally .
+that every president with a president pickled every proposal on the perplexed president perplexed the president in Sally !
+the proposal pickled Sally under the pickled floor .
+the very fine very delicious president sighed !
+is it true that every pickle under the pickle on every floor and Sally understood and understood and kissed and wanted every delicious sandwich ?
+is it true that Sally sighed ?
 
 4. -- see adjustments in RandSent.java --
 

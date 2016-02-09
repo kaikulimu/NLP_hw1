@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class RandSent {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParenthesisException {
         boolean option = false;
         int numSent = 1;
 		if (args[0].equals("-t")) {
@@ -37,8 +37,11 @@ public class RandSent {
                 child = "";
 
                 for (int i = 2; i < line.length; i++) {
-                    if (line[i].equals("#") || line[i].contains("(")) {
+                    if (line[i].equals("#")) {
                         break;
+                    } else if (line[i].contains("(") || line[i].contains(")")) {
+                        // throw parenthesis exception
+                        throw new ParenthesisException();
                     }
                     child += line[i] + " ";
                 }
