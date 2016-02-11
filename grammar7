@@ -3,7 +3,7 @@
 1	ROOT	S .
 1	ROOT	S !
 1	ROOT	is it true that S ?
-1	ROOT	QW QS ?
+1	ROOT	QS ?
 
 # The basic grammar rules.  Here's what the abbreviations stand for:
 #    S  = sentence
@@ -14,18 +14,20 @@
 #    Prep = preposition
 #    Adj = adjective
 
+# Declarative
 2	S	NP VP
-1	S	it Past NP that S
-1	S 	that S Past NP
+1	S	it Mental NP that S
+1	S 	that S Mental NP
 
-1	QS	PNoun PresV NP
-1	QS	NP PresV NP
+# Questions
+1	QS	QW PNoun InfV NP
+1	QS	QW NP InfV NP
 
 3	VP	Verb NP
 1	VP	Verb Conj VP
-1   VP  IVerb
-1	VP	MVerb that S
-1	VP	PVerb Prep NP
+#1   VP  IVerb
+#1	VP	MVerb that S
+#1	VP	PVerb Prep NP
 3	VP 	VP that NP Verb # relative clauses attempt
 3 	VP 	VP that VP NP
 
@@ -52,16 +54,11 @@
 
 1	Conj	and
 
-1	Verb	ate
-1	Verb	wanted
-1	Verb	kissed
-1	Verb	understood
-1	Verb	pickled
-
-1	PresV	eat			# present tense transitive verb
-1	PresV	want
-1	PresV	kiss
-1	PresV	understand
+1	InfV	eat			# present tense transitive verb
+1	InfV	want
+1	InfV	kiss
+1	InfV	understand
+1   InfV    pickle
 
 1   MVerb    thought	# mental verb
 
@@ -90,9 +87,55 @@
 
 1	Adv very			# adverb
 
-1	Past perplexed		# past tense mental verbs
+1	Mental perplexed		# past tense mental verbs
 
 1	Prep	with
 1	Prep	on
 1	Prep	under
 1	Prep	in
+
+#######Tenses######
+
+1	PastForm	ate         # past simple
+1	PastForm	wanted
+1	PastForm	kissed
+1	PastForm	understood
+1	PastForm	pickled
+
+1   PresentForm     eats
+1   PresentForm     wants
+1   PresentForm     kisses
+1   PresentForm     understands
+1   PresentForm     pickles
+
+1   ProgForm    eating
+1   ProgForm    wanting
+1   ProgForm    kissing
+1   ProgForm    understanding
+1   ProgForm    pickling
+
+1   PerfectForm     eaten
+1   PerfectForm     wanted
+1   PerfectForm     kissed
+1   PerfectForm     understood
+1   PerfectForm     pickled
+
+
+1 Verb Present
+1 Verb Past
+1 Verb will Future
+
+1 Present PresentForm #present simple
+1 Present has PerfectForm
+1 Present is ProgForm
+1 Present has been ProgForm
+
+1 Past PastForm     # simple past
+1 Past had PerfectForm
+1 Past was ProgForm
+1 Past had been ProgForm
+
+1 Future InfV
+1 Future have PerfectForm
+1 Future be ProgForm
+1 Future have been ProgForm

@@ -37,7 +37,7 @@ public class RandSent {
                 child = "";
 
                 for (int i = 2; i < line.length; i++) {
-                    if (line[i].equals("#")) {
+                    if (line[i].contains("#")) {
                         break;
                     } else if (line[i].contains("(") || line[i].contains(")")) {
                         // throw parenthesis exception

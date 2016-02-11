@@ -50,15 +50,18 @@ is it true that every chief of staff understood a fine pickled president in ever
 
 
 3. -- generate and display 10 sentences using grammar3.txt --
-   (a) I added a proper noun nonterminal that only had the terminal 'Sally': NP --> PNoun, PNoun --> Sally
-   (b) I added a conjunction nonterminal to verb phrases and noun phrases and added the terminal 'and':
+   (a) We added a proper noun nonterminal that only had the terminal 'Sally': NP --> PNoun, PNoun --> Sally
+   (b) We added a conjunction nonterminal to verb phrases and noun phrases and added the terminal 'and':
        VP --> Verb Conj VP, VP --> VP Conj VP, NP --> NP Conj NP, Conj --> and
-   (c) I created an intransitive verb nonterminal called
-   (d)
-   (e)
-   (f)
-   (g)
-   (h)
+   (c) We created an intransitive verb rule and a verb phrase rule that uses IVerb: VP --> IVerb, IVerb --> sighed
+   (d) We created a new verb phrase rule and a new MVerb category that currently only contains 'thought':
+       VP --> MVerb that S, MVerb --> thought
+   (e) We created a new Past category that represents verbs in the past tense which currently only
+       contains 'perplexed' and a new S rule: S --> it Past NP that S, Past --> perplexed
+   (f) We created a new Past nonterminal that represents verbs in the past tense which currently only
+       contains 'perplexed' and another new S rule: S --> that S Past NP, Past --> perplexed
+   (g) We created an Adv nonterminal and a new Adj rule: Adj --> Adv Adj, Adv --> very
+   (h) We added rules to Noun that go to the terminals 'proposal' and 'desk' and we
 
 is it true that every floor and Sally wanted every pickle and sighed ?
 every perplexed chief of staff understood Sally .
@@ -147,8 +150,62 @@ is it true that Sally sighed ?
           generating this sentence is equal to the probability of generation the best derivation.
 
           Which is also the reason why p(best_parse|sentence) = 1.
+      ii. The 0.5 means that given the observed sentence, there is a .5 chance of getting the
+          most probable parse. It is exactly .5 because there are exactly two equally likely
+          parses. As you can see below, the noun phrase below can derive into two noun phrases
+          separated by a preposition. Then, the same process can happen to NP_1 or NP_2 so that
+          we get the noun phrase "every sandwich with a pickle on the floor". This process is
+          equally likely for both NP_1 and NP_2.
 
+                            NP --> NP_1 PP --> NP_1 Prep NP_2
+     iii.                          sum over i from i to N of [- log_2 q(x_i)]
+          cross entropy per word = ------------------------------------------
+                                        sum over i from i to N of |x_i|
+                                   [- log_2 (5.144032922e-5)] + [-log_2 (1.240362877e-9)]
+                                 = ------------------------------------------------------
+                                                    6   +    12
+                                 = -(-43.8333312 log-prob. / 18 words)
+                                 = 2.435185067 bits
+      iv. perplexity = 2 ^ cross entropy per word = 2 ^ 2.435185067 = 5.408337062
+       v.                           sum over i from i to N of [- log_2 q(x_i)]
+           cross entropy per word = ------------------------------------------
+                                         sum over i from i to N of |x_i|
+                                    [- log_2 (5.144032922e-5)] + [-log_2 (0)]
+                                  = ------------------------------------------------------
+                                                     6   +    4
+                                  = infinity
+           The compression program might not be able to compress because theoretically it would
+           require an infinite number of bits per word based on cross entropy analysis. The reason
+           that it theoretically requires an infinite number of bits is because it is impossible
+           to generate the sentence 'the president ate .' using our grammar.
+   (e) ./randsent grammar2 100 | ./parse -P -g grammar2
+       entropy = 1.853425741 bits = -(-2216.697186 log-prob. / 1196 words)
 
+       ./randsent grammar3 100 | ./parse -P -g grammar3
+       entropy = 2.237615435 bits = -(-4123.925247 log-prob. / 1843 words)
+
+       grammar3 has a higher entropy than grammar2 because it is capable of generating several
+       more types of phenomena making it more "creative" and more likely to produce sentences that
+       would surprise itself.
+
+       ./randsent grammar 100 | ./parse -P -g grammar
+       The computation took a long time because it was likely to generate extremely long sentences
+       with strings of prepositions and noun phrases due to the high probability of choosing the
+       NP --> NP PP rule.
+
+   (f) ./randsent grammar2 100 | ./parse -P -g grammar
+       cross-entropy = 2.029495601 bits = -(-2323.772463 log-prob. / 1145 words)
+
+       ./randsent grammar2 100 | ./parse -P -g grammar3
+       cross-entropy = 2.441195229 bits = -(-2817.139294 log-prob. / 1154 words)
+
+       entropy of grammar2:
+       entropy = 1.853425741 bits (see part e for how we got this)
+
+       It is true that grammar2 predicts its own corpus better than grammar and grammar3 because
+       as shown, the entropy of grammar2 is lower than grammar2's cross entropy with grammar and
+       grammar3. grammar2 predicts best because the corpus is generated from grammar2 itself, so
+       grammar2 perfectly captures the expected true distribution of the corpus.
 
 7. (b) Yes-no questions
-   (c) Relative clauses
+   (f) Tenses
