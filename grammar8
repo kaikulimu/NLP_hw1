@@ -1,13 +1,15 @@
-# grammar7 for Homework 1 Question 7
-# This grammar handles (b) Yes-no questions and (f) tenses
+# grammar8 for Homework 1 Question 8
+# Introduced the imperative sentences
 
 1	ROOT	S .
 1	ROOT	S !
 1	ROOT	is it true that S ?
 1	ROOT	QW QS ?
+1   ROOT	CMD !
 
 # The basic grammar rules.  Here's what the abbreviations stand for:
 #    S  = sentence
+#	 CMD = imperative sentence (so-called "command")
 #    NP = noun phrase
 #    VP = verb phrase
 #    PP = prepositional phrase
@@ -47,6 +49,7 @@
 #   PrepInfVerb = prepositional infinitive verb
 #   ItThatInfVerb = infinitive verb that works with "it ___ that"
 
+
 # Questions
 8	QS NP QVP
 1   QS  it ItThatInfVerb NP that S
@@ -57,6 +60,14 @@
 1   QVP IntransInfVerb
 1	QVP	MentInfVerb that S
 1	QVP	PrepInfVerb Prep NP
+
+
+# Imperative (Commands)
+1	CMD	CMD Conj CMD
+5	CMD	InfVerb NP
+1   CMD IntransInfVerb
+1	CMD	MentInfVerb that S
+1	CMD	PrepInfVerb Prep NP
 
 
 # Noun Phrases
@@ -80,10 +91,16 @@
 1	QW	can
 
 1	Conj	and
+1	Conj	or
+1	Conj	as well as
 
 1	Det	the
 1	Det	a
 1	Det	every
+1	Det	one
+1	Det	all		# don't care about singular vs. plural agreement here
+1   Det each
+1   Det no
 
 1	Noun	president
 1	Noun	sandwich
@@ -92,13 +109,30 @@
 1	Noun	floor
 1	Noun	desk
 1	Noun	proposal
+1   Noun    chicken
+1   Noun    table
+1   Noun    fan
+1   Noun    giant
+1   Noun    dragon
 
 1   PNoun    Sally
+1   PNoun    Vincent
+1   PNoun    Andy
+1   PNoun    Channing
+1   PNoun    Jason
+1   PNoun    Tyrion
+1   PNoun    Daniel
+1   PNoun    Nick
+1   PNoun    Amy
 
 1	Adj	fine
 1	Adj	delicious
 1	Adj	perplexed
 1	Adj	pickled
+1	Adj	beautiful
+1	Adj	small
+1	Adj	tall
+1	Adj	magnificent
 
 1	Adv very			# adverb
 
@@ -106,6 +140,11 @@
 1	Prep	on
 1	Prep	under
 1	Prep	in
+1	Prep	at
+1	Prep	above
+1	Prep	through
+1	Prep	around
+1	Prep	beside
 
 #######Tenses######
 
@@ -123,9 +162,14 @@
 1	PastForm	understood
 1	PastForm	pickled
 1   MentPastForm    thought
+1   MentPastForm    assumed
 1   IntransPastForm    sighed
+1   IntransPastForm    died
+1   IntransPastForm    stopped
 1	PrepPastForm	worked
+1	PrepPastForm	rested
 1	ItThatPastForm perplexed
+1	ItThatPastForm amused
 
 1   PresentForm     eats
 1   PresentForm     wants
@@ -133,9 +177,14 @@
 1   PresentForm     understands
 1   PresentForm     pickles
 1   MentPresentForm    thinks
+1   MentPresentForm    assumes
 1   IntransPresentForm    sighs
+1   IntransPresentForm    dies
+1   IntransPresentForm    stops
 1	PrepPresentForm	    works
+1	PrepPresentForm	    rests
 1	ItThatPresentForm   perplexes
+1	ItThatPresentForm   amuses
 
 1   ProgForm    eating
 1   ProgForm    wanting
@@ -143,9 +192,14 @@
 1   ProgForm    understanding
 1   ProgForm    pickling
 1   MentProgForm    thinking
+1   MentProgForm    assuming
 1   IntransProgForm    sighing
+1   IntransProgForm    dying
+1   IntransProgForm    stopping
 1	PrepProgForm	    working
+1	PrepProgForm	    resting
 1	ItThatProgForm   perplexing
+1	ItThatProgForm   amusing
 
 1   PerfectForm     eaten
 1   PerfectForm     wanted
@@ -153,9 +207,14 @@
 1   PerfectForm     understood
 1   PerfectForm     pickled
 1   MentPerfectForm    thought
+1   MentPerfectForm    assumed
 1   IntransPerfectForm    sighed
+1   IntransPerfectForm    died
+1   IntransPerfectForm    stopped
 1	PrepPerfectForm	    worked
+1	PrepPerfectForm	    rested
 1	ItThatPerfectForm   perplexed
+1	ItThatPerfectForm   amused
 
 1	InfForm	eat
 1	InfForm	want
@@ -163,9 +222,14 @@
 1	InfForm	understand
 1   InfForm pickle
 1   MentInfForm    think
+1   MentInfForm    assume
 1   IntransInfForm    sigh
+1   IntransInfForm    die
+1   IntransInfForm    stop
 1	PrepInfForm	    work
+1	PrepInfForm	    rest
 1	ItThatInfForm   perplex
+1	ItThatInfForm   amuse
 
 
 0.5 Verb Verb Conj Verb

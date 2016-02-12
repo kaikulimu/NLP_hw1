@@ -365,7 +365,7 @@ is it true that Sally sighed ?
         should a sandwich work with a chief of staff ?
         should it perplex and perplex and perplex and perplex Sally and the president and every chief of staff that that a pickle had been wanting a chief of staff had perplexed a proposal ?
 
-        Note: We generated the sentences above by significantly increasing the weight of question sentences.
+        Note: We generated the sentences above by significantly increasing the weight of question sentences in grammar7.
 
         Discussion: We created the rule: "ROOT --> QW QS ?" in order to generate yes-no questions. QW stands for
         question words that appear at the beginning of the sentence, such as "will" and "did". QS stands for the rest
@@ -389,3 +389,8 @@ is it true that Sally sighed ?
                         IntransVerb --> IntransPast --> was IntransProgForm --> was sighing
 
         We also added conjunctions for each type of verb to avoid mixing types in unforeseen ways.
+		
+8.	To better describe English in our grammar, we did the following modifications to grammar8:
+	(i) We added a variety of nouns, verbs, adjectives, determiners, conjunctions and prepositions. An example of
+	    each would be "dragon", "amused", "beautiful", "each", "or", and "around" respectively.
+	(ii)Introduced the imperative sentences (commands), such as "stop !" and "eat the sandwich !".	
