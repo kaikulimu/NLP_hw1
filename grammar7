@@ -3,7 +3,7 @@
 1	ROOT	S .
 1	ROOT	S !
 1	ROOT	is it true that S ?
-1	ROOT	QS ?
+100	ROOT	QW QS ?             #question word + question sentence
 
 # The basic grammar rules.  Here's what the abbreviations stand for:
 #    S  = sentence
@@ -15,33 +15,37 @@
 #    Adj = adjective
 
 # Declarative
-2	S	NP VP
-1	S	it Mental NP that S
-1	S 	that S Mental NP
+4	S	NP VP
+1	S	it ItThatVerb NP that S
+1	S 	that S ItThatVerb NP
 
 # Questions
-1	QS	QW PNoun InfV NP
-1	QS	QW NP InfV NP
+5	QS NP QVP        #question verb phrase
+1	QVP	QVP Conj QVP
+1   QVP InfVerb NP
+1   QVP IntransInfVerb
+1	QVP	MentInfVerb that S
+1	QVP	PrepInfVerb Prep NP
 
-3	VP	Verb NP
-1	VP	Verb Conj VP
-#1   VP  IVerb
-#1	VP	MVerb that S
-#1	VP	PVerb Prep NP
-3	VP 	VP that NP Verb # relative clauses attempt
-3 	VP 	VP that VP NP
+1   QS  it ItThatInfVerb NP that S
+1	QS  that S ItThatInfVerb NP
+
+
+
+1	VP	VP Conj VP
+5	VP	Verb NP
+1   VP  IntransVerb
+1	VP	MentVerb that S
+1	VP	PrepVerb Prep NP
 
 4	NP	Det Noun
-3   NP  PNoun
-2	NP	NP PP
+1   NP  PNoun
+1	NP	NP PP
 1	NP	NP Conj NP
-1   NP  NP and NP
 
 1	PP	Prep NP
 3	Noun	Adj Noun
-3	Adj		Adv Adj
-1	Adv		Adv
-
+1	Adj		Adv Adj
 
 # Vocabulary.
 
@@ -53,18 +57,6 @@
 1	QW	can
 
 1	Conj	and
-
-1	InfV	eat			# present tense transitive verb
-1	InfV	want
-1	InfV	kiss
-1	InfV	understand
-1   InfV    pickle
-
-1   MVerb    thought	# mental verb
-
-1   IVerb    sighed  	# intransitive verb
-
-1	PVerb	worked		# verbs that need a preposition
 
 1	Det	the
 1	Det	a
@@ -87,8 +79,6 @@
 
 1	Adv very			# adverb
 
-1	Mental perplexed		# past tense mental verbs
-
 1	Prep	with
 1	Prep	on
 1	Prep	under
@@ -96,46 +86,150 @@
 
 #######Tenses######
 
-1	PastForm	ate         # past simple
+1	PastForm	ate         # transitive verb
 1	PastForm	wanted
 1	PastForm	kissed
 1	PastForm	understood
 1	PastForm	pickled
+1   MentPastForm    thought	# mental verb
+1   IntransPastForm    sighed  	# intransitive verb
+1	PrepPastForm	worked		# verbs that need a preposition
+1	ItThatPastForm perplexed		# "it that" verbs
 
 1   PresentForm     eats
 1   PresentForm     wants
 1   PresentForm     kisses
 1   PresentForm     understands
 1   PresentForm     pickles
+1   MentPresentForm    thinks
+1   IntransPresentForm    sighs
+1	PrepPresentForm	    works
+1	ItThatPresentForm   perplexes
 
 1   ProgForm    eating
 1   ProgForm    wanting
 1   ProgForm    kissing
 1   ProgForm    understanding
 1   ProgForm    pickling
+1   MentProgForm    thinking
+1   IntransProgForm    sighing
+1	PrepProgForm	    working
+1	ItThatProgForm   perplexing
 
 1   PerfectForm     eaten
 1   PerfectForm     wanted
 1   PerfectForm     kissed
 1   PerfectForm     understood
 1   PerfectForm     pickled
+1   MentPerfectForm    thought
+1   IntransPerfectForm    sighed
+1	PrepPerfectForm	    worked
+1	ItThatPerfectForm   perplexed
+
+1	InfForm	eat
+1	InfForm	want
+1	InfForm	kiss
+1	InfForm	understand
+1   InfForm pickle
+1   MentInfForm    think
+1   IntransInfForm    sigh
+1	PrepInfForm	    work
+1	ItThatInfForm   perplex
 
 
+0.5 Verb Verb Conj Verb
 1 Verb Present
 1 Verb Past
 1 Verb will Future
+0.5 ItThatVerb ItThatVerb Conj ItThatVerb
+1 ItThatVerb ItThatPresent
+1 ItThatVerb ItThatPast
+1 ItThatVerb will ItThatFuture
+0.5 IntransVerb IntransVerb Conj IntransVerb
+1 IntransVerb IntransPresent
+1 IntransVerb IntransPast
+1 IntransVerb will IntransFuture
+0.5 MentVerb MentVerb Conj MentVerb
+1 MentVerb MentPresent
+1 MentVerb MentPast
+1 MentVerb will MentFuture
+0.5 PrepVerb PrepVerb Conj PrepVerb
+1 PrepVerb PrepPresent
+1 PrepVerb PrepPast
+1 PrepVerb will PrepFuture
 
-1 Present PresentForm #present simple
+
+1 Present PresentForm
 1 Present has PerfectForm
 1 Present is ProgForm
 1 Present has been ProgForm
+1 ItThatPresent ItThatPresentForm
+1 ItThatPresent has ItThatPerfectForm
+1 ItThatPresent is ItThatProgForm
+1 ItThatPresent has been ItThatProgForm
+1 IntransPresent IntransPresentForm
+1 IntransPresent has IntransPerfectForm
+1 IntransPresent is IntransProgForm
+1 IntransPresent has been IntransProgForm
+1 MentPresent MentPresentForm
+1 MentPresent has MentPerfectForm
+1 MentPresent is MentProgForm
+1 MentPresent has been MentProgForm
+1 PrepPresent PrepPresentForm
+1 PrepPresent has PrepPerfectForm
+1 PrepPresent is PrepProgForm
+1 PrepPresent has been PrepProgForm
 
-1 Past PastForm     # simple past
+1 Past PastForm
 1 Past had PerfectForm
 1 Past was ProgForm
 1 Past had been ProgForm
+1 ItThatPast ItThatPastForm
+1 ItThatPast had ItThatPerfectForm
+1 ItThatPast was ItThatProgForm
+1 ItThatPast had been ItThatProgForm
+1 IntransPast IntransPastForm
+1 IntransPast had IntransPerfectForm
+1 IntransPast was IntransProgForm
+1 IntransPast had been IntransProgForm
+1 MentPast MentPastForm
+1 MentPast had MentPerfectForm
+1 MentPast was MentProgForm
+1 MentPast had been MentProgForm
+1 PrepPast PrepPastForm
+1 PrepPast had PrepPerfectForm
+1 PrepPast was PrepProgForm
+1 PrepPast had been PrepProgForm
 
-1 Future InfV
+1 Future InfForm
 1 Future have PerfectForm
 1 Future be ProgForm
 1 Future have been ProgForm
+1 ItThatFuture ItThatInfForm
+1 ItThatFuture have ItThatPerfectForm
+1 ItThatFuture be ItThatProgForm
+1 ItThatFuture have been ItThatProgForm
+1 IntransFuture IntransInfForm
+1 IntransFuture have IntransPerfectForm
+1 IntransFuture be IntransProgForm
+1 IntransFuture have been IntransProgForm
+1 MentFuture MentInfForm
+1 MentFuture have MentPerfectForm
+1 MentFuture be MentProgForm
+1 MentFuture have been MentProgForm
+1 PrepFuture PrepInfForm
+1 PrepFuture have PrepPerfectForm
+1 PrepFuture be PrepProgForm
+1 PrepFuture have been PrepProgForm
+
+
+1 InfVerb InfVerb Conj InfVerb
+6 InfVerb InfForm
+1 IntransInfVerb IntransInfVerb Conj IntransInfVerb
+6 IntransInfVerb IntransInfForm
+1 MentInfVerb MentInfVerb Conj MentInfVerb
+6 MentInfVerb MentInfForm
+1 PrepInfVerb PrepInfVerb Conj PrepInfVerb
+6 PrepInfVerb PrepInfForm
+1 ItThatInfVerb ItThatInfVerb Conj ItThatInfVerb
+6 ItThatInfVerb ItThatInfForm
