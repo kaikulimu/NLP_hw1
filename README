@@ -1,5 +1,25 @@
 README for Homework 1
 
+Authors:
+Channing Kimble-Brown | ckimble3@jhu.edu
+Jung Yang   | jyang99@jhu.edu
+Vincent Yan | vyan1@jhu.edu
+
+ATTENTION:
+To compile and run the random sentence generator use the command:
+$ ./randsent grammarx
+
+Important files included:
+    1. grammar
+    2. grammar2
+    3. grammar3
+    4. grammar7
+    5. README
+    6. RandSent.java
+    7. ParenthesisException.java
+
+####################################################
+
 Part 1 - 10 sample sentences:
 
 is it true that a chief of staff with a sandwich with every chief of staff in a floor in every pickle with
@@ -37,6 +57,7 @@ the president pickled a delicious pickled perplexed pickled pickled chief of sta
    (e) I adjust the frequencies of various terminals like nouns such that it was more indicative
        of our personal experience with real life English sentences.
 
+Sample sentences:
 is it true that the perplexed floor kissed the perplexed chief of staff ?
 every president wanted the delicious president .
 the floor wanted the chief of staff .
@@ -49,20 +70,23 @@ is it true that the floor in the fine sandwich pickled the fine chief of staff ?
 is it true that every chief of staff understood a fine pickled president in every fine floor ?
 
 
-3. -- generate and display 10 sentences using grammar3.txt --
+3. -- generate and display 10 sentences using grammar3 --
    (a) We added a proper noun nonterminal that only had the terminal 'Sally': NP --> PNoun, PNoun --> Sally
    (b) We added a conjunction nonterminal to verb phrases and noun phrases and added the terminal 'and':
        VP --> Verb Conj VP, VP --> VP Conj VP, NP --> NP Conj NP, Conj --> and
-   (c) We created an intransitive verb rule and a verb phrase rule that uses IVerb: VP --> IVerb, IVerb --> sighed
-   (d) We created a new verb phrase rule and a new MVerb category that currently only contains 'thought':
-       VP --> MVerb that S, MVerb --> thought
-   (e) We created a new Past category that represents verbs in the past tense which currently only
-       contains 'perplexed' and a new S rule: S --> it Past NP that S, Past --> perplexed
-   (f) We created a new Past nonterminal that represents verbs in the past tense which currently only
-       contains 'perplexed' and another new S rule: S --> that S Past NP, Past --> perplexed
+   (c) We created an intransitive verb rule and a verb phrase rule that uses IVerb: VP --> IntransVerb,
+       IntransVerb --> sighed
+   (d) We created a new verb phrase rule and a new MentVerb category that currently only contains 'thought':
+       VP --> MentVerb that S, MentVerb --> thought
+   (e) We created a new ItThatVerb nonterminal that represents verbs that are compatible with "it ___ that" which
+       currently only contains 'perplexed' and a new S rule: S --> it ItThatVerb NP that S, ItThatVerb --> perplexed
+   (f) We created a new ItThatVerb nonterminal that represents verbs that are compatible with "it ___ that" which
+       currently only contains 'perplexed' and another new S rule: S --> that S ItThatVerb NP, ItThatVerb --> perplexed
    (g) We created an Adv nonterminal and a new Adj rule: Adj --> Adv Adj, Adv --> very
-   (h) We added rules to Noun that go to the terminals 'proposal' and 'desk' and we
+   (h) We added rules to Noun that go to the terminals 'proposal' and 'desk' and we we made "worked"
+       into a special verb called PrepVerb because it requires a preposition in its transitive form.
 
+Sample sentences:
 is it true that every floor and Sally wanted every pickle and sighed ?
 every perplexed chief of staff understood Sally .
 is it true that it perplexed the perplexed fine floor that every floor pickled a pickle and ate Sally ?
@@ -74,7 +98,128 @@ the very fine very delicious president sighed !
 is it true that every pickle under the pickle on every floor and Sally understood and understood and kissed and wanted every delicious sandwich ?
 is it true that Sally sighed ?
 
-4. -- see adjustments in RandSent.java --
+4.  -- see adjustments in RandSent.java --
+
+    (ROOT is
+          it
+          true
+          that
+          (S it
+             (Past perplexed)
+             (NP (PNoun Sally))
+             that
+             (S it
+                (Past perplexed)
+                (NP (PNoun Sally))
+                that
+                (S it
+                   (Past perplexed)
+                   (NP (PNoun Sally))
+                   that
+                   (S (NP (PNoun Sally))
+                      (VP (Verb kissed)
+                          (NP (Det every)
+                              (Noun (Adj perplexed)
+                                    (Noun (Adj perplexed)
+                                          (Noun sandwich)))))))))
+          ?)
+    (ROOT (S it
+             (Past perplexed)
+             (NP (Det every)
+                 (Noun president))
+             that
+             (S that
+                (S that
+                   (S it
+                      (Past perplexed)
+                      (NP (Det a)
+                          (Noun chief
+                                of
+                                staff))
+                      that
+                      (S (NP (NP (PNoun Sally))
+                             (PP (Prep under)
+                                 (NP (Det the)
+                                     (Noun (Adj pickled)
+                                           (Noun chief
+                                                 of
+                                                 staff)))))
+                         (VP (PVerb worked)
+                             (Prep with)
+                             (NP (PNoun Sally)))))
+                   (Past perplexed)
+                   (NP (Det the)
+                       (Noun floor)))
+                (Past perplexed)
+                (NP (Det every)
+                    (Noun (Adj delicious)
+                          (Noun desk)))))
+          .)
+    (ROOT is
+          it
+          true
+          that
+          (S (NP (NP (NP (Det every)
+                         (Noun floor))
+                     (Conj and)
+                     (NP (NP (NP (Det a)
+                                 (Noun floor))
+                             (Conj and)
+                             (NP (Det a)
+                                 (Noun president)))
+                         (Conj and)
+                         (NP (Det the)
+                             (Noun (Adj fine)
+                                   (Noun pickle)))))
+                 (Conj and)
+                 (NP (PNoun Sally)))
+             (VP (Verb ate)
+                 (NP (Det the)
+                     (Noun (Adj perplexed)
+                           (Noun (Adj fine)
+                                 (Noun (Adj pickled)
+                                       (Noun desk)))))))
+          ?)
+    (ROOT (S it
+             (Past perplexed)
+             (NP (NP (Det a)
+                     (Noun desk))
+                 (Conj and)
+                 (NP (PNoun Sally)))
+             that
+             (S that
+                (S that
+                   (S (NP (Det every)
+                          (Noun floor))
+                      (VP (Verb (Verb ate)
+                                (Conj and)
+                                (Verb kissed))
+                          (NP (Det the)
+                              (Noun pickle))))
+                   (Past perplexed)
+                   (NP (NP (Det every)
+                           (Noun (Adj (Adv very)
+                                      (Adj fine))
+                                 (Noun (Adj perplexed)
+                                       (Noun president))))
+                       (Conj and)
+                       (NP (Det a)
+                           (Noun desk))))
+                (Past perplexed)
+                (NP (PNoun Sally))))
+          .)
+    (ROOT is
+          it
+          true
+          that
+          (S (NP (Det every)
+                 (Noun floor))
+             (VP (Verb ate)
+                 (NP (Det a)
+                     (Noun chief
+                           of
+                           staff))))
+          ?)
 
 5. (a) The alternative derivation is as follows:
 	   
@@ -132,7 +277,8 @@ is it true that Sally sighed ?
 	   We find this pattern to fit Catalan Numbers. It reflects the very
 	   recursive nature of natural language.
 
-	   ***********************conjunctions in grammar 3*************************
+	   In grammar3, conjunctions work just like prepositions in that they compose noun phrases, verb phrases and
+	   verbs to create more complex phrases. Each conjunction used will also increase the number of parses.
 
    (d) i. the president ate the sandwich .
           The probability is so small because it is derived from the many outcomes from a
@@ -208,4 +354,34 @@ is it true that Sally sighed ?
        grammar2 perfectly captures the expected true distribution of the corpus.
 
 7. (b) Yes-no questions
+        Sample sentences:
+        could every proposal sigh ?
+        can it perplex every pickled delicious chief of staff under every sandwich that that the perplexed desk in a proposal sighed and sighed and had sighed has perplexed every pickle ?
+        would a sandwich think and think that a floor wanted every fine proposal and the desk and the fine proposal ?
+        should a sandwich work with a chief of staff ?
+        should it perplex and perplex and perplex and perplex Sally and the president and every chief of staff that that a pickle had been wanting a chief of staff had perplexed a proposal ?
+
+        Note: We generated the sentences above by significantly increasing the weight of question sentences.
+
+        Discussion: We created the rule: "ROOT --> QW QS ?" in order to generate yes-no questions. QW stands for
+        question words that appear at the beginning of the sentence, such as "will" and "did". QS stands for the rest
+        of the question sentence. The sentence structure of QS is very similar to normal sentences derived from S. The
+        only difference is that the main verb(s) in the QS is always in the infinitive form. We also allow conjunctions
+        in yes-no questions between infinitive verb forms.
+
    (f) Tenses
+        Sample sentences:
+        Sally is thinking that every sandwich and the chief of staff on Sally and every floor has kissed a chief of staff under a desk and the very very fine sandwich .
+        did the pickle under Sally and a president and the sandwich under every pickle and the floor and Sally in the proposal eat every chief of staff and work on a perplexed pickled pickled perplexed very pickled proposal
+        and think that a floor is eating Sally and will sigh and had kissed the chief of staff and sigh ?
+        is it true that the proposal will have been pickling a desk ?
+        is it true that the floor had been thinking that it had perplexed the president that Sally will have understood the sandwich and will have eaten a delicious chief of staff ?
+        a pickled fine president was thinking that it has perplexed Sally under every president in the very pickled proposal and every proposal and every perplexed proposal that the perplexed fine pickle and the perplexed fl
+        oor on Sally will sigh .
+
+        Discussion: We added several verb tenses and forms by creating a hierarchy. The top level being different types
+        of verbs which then lead to different tenses which finally lead to their actual forms. For example, if we
+        were to generate an intransitive verb in progressive past tense then we would use the following rules:
+                        IntransVerb --> IntransPast --> was IntransProgForm --> was sighing
+
+        We also added conjunctions for each type of verb to avoid mixing types in unforeseen ways.

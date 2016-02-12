@@ -1,9 +1,10 @@
-# grammar3.txt for Homework 1 Question 3
+# grammar7 for Homework 1 Question 7
+# This grammar handles (b) Yes-no questions and (f) tenses
 
 1	ROOT	S .
 1	ROOT	S !
 1	ROOT	is it true that S ?
-100	ROOT	QW QS ?             #question word + question sentence
+1	ROOT	QW QS ?
 
 # The basic grammar rules.  Here's what the abbreviations stand for:
 #    S  = sentence
@@ -13,23 +14,20 @@
 #    Det = determiner (sometimes called "article")
 #    Prep = preposition
 #    Adj = adjective
+#    Conj = conjunction
+#    Adv = adverb
+#    PNoun = proper noun
+
+# Verb Types
+#   MentVerb = mental verb (works with "NP ___ that", such as "I thought that")
+#   IntransVerb = intransitive verb
+#   PrepVerb = prepositional verb
+#   ItThatVerb = verb that works with "it ___ NP that"
 
 # Declarative
-4	S	NP VP
+8	S	NP VP
 1	S	it ItThatVerb NP that S
 1	S 	that S ItThatVerb NP
-
-# Questions
-5	QS NP QVP        #question verb phrase
-1	QVP	QVP Conj QVP
-1   QVP InfVerb NP
-1   QVP IntransInfVerb
-1	QVP	MentInfVerb that S
-1	QVP	PrepInfVerb Prep NP
-
-1   QS  it ItThatInfVerb NP that S
-1	QS  that S ItThatInfVerb NP
-
 
 
 1	VP	VP Conj VP
@@ -37,6 +35,31 @@
 1   VP  IntransVerb
 1	VP	MentVerb that S
 1	VP	PrepVerb Prep NP
+
+
+# The yes-no grammar rules
+#   QW = question word
+#   QS = question sentence
+#   QVP = question verb phrase
+#   InfVerb = infinitive verb
+#   IntransInfVerb = intransitive infinitive verb
+#   MentInfVerb = mental infinitive verb
+#   PrepInfVerb = prepositional infinitive verb
+#   ItThatInfVerb = infinitive verb that works with "it ___ that"
+
+# Questions
+8	QS NP QVP
+1   QS  it ItThatInfVerb NP that S
+1	QS  that S ItThatInfVerb NP
+
+1	QVP	QVP Conj QVP
+1   QVP InfVerb NP
+1   QVP IntransInfVerb
+1	QVP	MentInfVerb that S
+1	QVP	PrepInfVerb Prep NP
+
+
+# Noun Phrases
 
 4	NP	Det Noun
 1   NP  PNoun
@@ -86,15 +109,23 @@
 
 #######Tenses######
 
-1	PastForm	ate         # transitive verb
+# The tense grammar rules:
+#   PastForm = past simple tense of the verb
+#   PresentForm = present simple tense of the verb
+#   ProgForm = progressive form of the verb
+#   PerfectForm = perfect form of the verb
+#   InfForm = infinitive form of the verb
+#   InfForm = infinitive form of the verb
+
+1	PastForm	ate
 1	PastForm	wanted
 1	PastForm	kissed
 1	PastForm	understood
 1	PastForm	pickled
-1   MentPastForm    thought	# mental verb
-1   IntransPastForm    sighed  	# intransitive verb
-1	PrepPastForm	worked		# verbs that need a preposition
-1	ItThatPastForm perplexed		# "it that" verbs
+1   MentPastForm    thought
+1   IntransPastForm    sighed
+1	PrepPastForm	worked
+1	ItThatPastForm perplexed
 
 1   PresentForm     eats
 1   PresentForm     wants

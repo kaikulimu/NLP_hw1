@@ -13,16 +13,25 @@
 #    Det = determiner (sometimes called "article")
 #    Prep = preposition
 #    Adj = adjective
+#    Conj = conjunction
+#    Adv = adverb
+#    PNoun = proper noun
+
+# Verb Types
+#   MentVerb = mental verb (works with "NP ___ that", such as "I thought that")
+#   IntransVerb = intransitive verb
+#   PrepVerb = prepositional verb
+#   ItThatVerb = verb that works with "it ___ NP that"
 
 2	S	NP VP
-1	S	it Past NP that S
-1	S 	that S Past NP
+1	S	it ItThatVerb NP that S
+1	S 	that S ItThatVerb NP
 
 3	VP	Verb NP
 1	VP	VP Conj VP
-1   VP  IVerb
-1	VP	MVerb that S
-1	VP	PVerb Prep NP
+1   VP  IntransVerb
+1	VP	MentVerb that S
+1	VP	PrepVerb Prep NP
 
 1   Verb    Verb Conj Verb
 
@@ -40,17 +49,17 @@
 
 1	Conj	and
 
-1	Verb	ate         # transitive verb
+1	Verb	ate
 1	Verb	wanted
 1	Verb	kissed
 1	Verb	understood
 1	Verb	pickled
 
-1   MVerb    thought	# mental verb (verbs usually followed by "that")
+1   MentVerb    thought
 
-1   IVerb    sighed  	# intransitive verb
+1   IntransVerb    sighed
 
-1	PVerb	worked		# verbs that need a preposition
+1	PrepVerb	worked
 
 1	Det	the
 1	Det	a
@@ -71,9 +80,9 @@
 1	Adj	perplexed
 1	Adj	pickled
 
-1	Adv very			# adverb
+1	Adv very
 
-1	Past perplexed		# past tense verbs
+1	ItThatVerb perplexed
 
 1	Prep	with
 1	Prep	on
