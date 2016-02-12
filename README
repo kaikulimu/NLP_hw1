@@ -7,16 +7,18 @@ Yuan Jing Vincent Yan | vyan1@jhu.edu
 
 ATTENTION:
 To compile and run the random sentence generator use the command:
-$ ./randsent grammarx
+$ ./randsent grammar#
+	where # is the grammar file number
 
 Important files included:
     1. grammar
     2. grammar2
     3. grammar3
     4. grammar7
-    5. README
-    6. RandSent.java
-    7. ParenthesisException.java
+	5. grammar8
+    6. README
+    7. RandSent.java
+    8. ParenthesisException.java
 
 ####################################################
 
@@ -274,11 +276,13 @@ is it true that Sally sighed ?
 	   number of parses: 		1, 2, 5, 14, 42, 132
 	   number of prepositions: 	1, 2, 3,  4,  5,   6
 
-	   We find this pattern to fit Catalan Numbers. It reflects the very
+	   We find this pattern to fit the Catalan Numbers, which occurs in various counting
+	   problems, often involving recursively-defined objects. It reflects the very
 	   recursive nature of natural language.
 
-	   In grammar3, conjunctions work just like prepositions in that they compose noun phrases, verb phrases and
-	   verbs to create more complex phrases. Each conjunction used will also increase the number of parses.
+	   In grammar3, conjunctions work just like prepositions in that they compose noun
+	   phrases, verb phrases and verbs to create more complex phrases. Each conjunction
+	   used will also increase the number of parses.
 
    (d) i. the president ate the sandwich .
           The probability is so small because it is derived from the many outcomes from a
